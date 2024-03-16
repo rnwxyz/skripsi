@@ -36,8 +36,8 @@ class MyDropdown extends StatelessWidget {
         onChanged: onChanged,
         borderRadius: BorderRadius.circular(20),
         dropdownColor: Colors.grey[200],
-        // remove underline
         underline: Container(),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:kredit_app/views/approve.dart';
 import 'package:kredit_app/views/dropdown.dart';
+import 'package:kredit_app/views/reject.dart';
 import 'package:kredit_app/views/text_field.dart';
 
 class FormScreen extends StatefulWidget {
@@ -22,22 +25,27 @@ class _FormScreenState extends State<FormScreen> {
   final percentIncomeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final List<String> homeOwnershipItems = <String>[
-    'One',
-    'Two',
-    'Three',
-    'Four'
+    'OWN',
+    'RENT',
+    'MORTGAGE',
+    'OTHER'
   ];
   final List<String> loanGradeItems = <String>[
-    'One',
-    'Two',
-    'Three',
-    'Four',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G'
   ];
   final List<String> loanIntentItems = <String>[
-    'One',
-    'Two',
-    'Three',
-    'Four',
+    'DEBTCONSOLIDATION',
+    'EDUCATION',
+    'HOMEIMPROVEMENT',
+    'MEDICAL',
+    'PERSONAL',
+    'VENTURE'
   ];
 
   @override
@@ -75,19 +83,52 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Form Pengajuan Kredit'),
+        title: const Text(''),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        forceMaterialTransparency: true,
       ),
       body: SafeArea(
         minimum: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            const Row(
+              children: <Widget>[
+                SizedBox(
+                  height: 70,
+                  child: Image(image: AssetImage('assets/logo.png')),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Form Pengajuan Kredit',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Isi data dengan benar sistem akan mengecek kelayakan kredit anda.',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             Form(
               key: _formKey,
               child: Expanded(
@@ -110,7 +151,7 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: ageController,
-                      label: 'Umur',
+                      label: 'Umur (Tahun)',
                       hint: 'exp : 22',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -122,7 +163,7 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: incomeController,
-                      label: 'Pendapatan Per Tahun',
+                      label: 'Pendapatan Per Tahun (\$)',
                       hint: 'exp : 1000000',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -134,7 +175,7 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: empLenghtController,
-                      label: 'Lama Bekerja',
+                      label: 'Lama Bekerja (Tahun)',
                       hint: 'exp : 2',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -146,7 +187,8 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: loanAmtController,
-                      label: 'Jumlah Pinjaman',
+                      // dollar sign
+                      label: 'Jumlah Pinjaman (\$)',
                       hint: 'exp : 1000000',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -158,7 +200,7 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: loanIntRateController,
-                      label: 'Bunga Pinjaman',
+                      label: 'Bunga Pinjaman (%)',
                       hint: 'exp : 10',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -170,7 +212,7 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                     MyTextField(
                       controller: percentIncomeController,
-                      label: 'Persentase Pendapatan',
+                      label: 'Persentase Pendapatan (%)',
                       hint: 'exp : 30',
                       vlidator: required,
                       keyboardType: TextInputType.number,
@@ -215,6 +257,35 @@ class _FormScreenState extends State<FormScreen> {
                           loanGradeController.text = value!;
                         });
                       },
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        // if (_formKey.currentState!.validate()) {
+
+                        // }
+                        // push this page and remove previous page except first page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RejectScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('Cek Kelayakan Kredit',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                    ),
+                    const SizedBox(
+                      height: 15,
                     ),
                   ],
                 ),

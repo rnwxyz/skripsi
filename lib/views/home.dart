@@ -21,6 +21,13 @@ class _HomeState extends State<Home> {
             ),
             const SizedBox(height: 100),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.yellow[500],
+                minimumSize: const Size(double.minPositive, 120),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -28,7 +35,8 @@ class _HomeState extends State<Home> {
                   ),
                 );
               },
-              child: const Text('Pengajuan Kredit'),
+              child: Text('Mulai',
+                  style: TextStyle(fontSize: 30, color: Colors.grey[800])),
             ),
           ],
         ),
