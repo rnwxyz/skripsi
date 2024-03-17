@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:kredit_app/blocs/home/home_bloc.dart';
+import 'package:kredit_app/blocs/credit/credit_bloc.dart';
 import 'package:kredit_app/views/home.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomeBloc(),
+          create: (context) => CreditBloc(),
         )
       ],
       child: const MaterialApp(

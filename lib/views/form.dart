@@ -1,9 +1,15 @@
+import 'dart:ffi' as ffi;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kredit_app/blocs/credit/credit_bloc.dart';
+import 'package:kredit_app/model/credit_model.dart';
 import 'package:kredit_app/views/approve.dart';
 import 'package:kredit_app/views/dropdown.dart';
 import 'package:kredit_app/views/reject.dart';
 import 'package:kredit_app/views/text_field.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
@@ -68,6 +74,7 @@ class _FormScreenState extends State<FormScreen> {
     homeOwnershipController.text = homeOwnershipItems[0];
     loanGradeController.text = loanGradeItems[0];
     loanIntentController.text = loanIntentItems[0];
+    context.read<CreditBloc>().add(CreditInitialEvent());
     super.initState();
   }
 
@@ -270,19 +277,67 @@ class _FormScreenState extends State<FormScreen> {
                         ),
                       ),
                       onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-
-                        // }
-                        // push this page and remove previous page except first page
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RejectScreen(),
-                          ),
-                        );
+                        if (_formKey.currentState!.validate()) {
+                          final data = CreditModel(
+                            name: nameController.text,
+                            age: int.parse(ageController.text),
+                            income: int.parse(incomeController.text),
+                            empLength: int.parse(empLenghtController.text),
+                            loanAmount: int.parse(loanAmtController.text),
+                            interestRate:
+                                double.parse(loanIntRateController.text),
+                            percentIncome:
+                                double.parse(percentIncomeController.text),
+                            homeOwnership: homeOwnershipController.text,
+                            loanIntent: loanIntentController.text,
+                            loanGrade: loanGradeController.text,
+                          );
+                          context
+                              .read<CreditBloc>()
+                              .add((CreditPostEvent(credit: data)));
+                        }
                       },
-                      child: const Text('Cek Kelayakan Kredit',
-                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                      child: BlocConsumer<CreditBloc, CreditState>(
+                        builder: (context, state) {
+                          if (state is CreditLoading) {
+                            // close keyboard
+                            FocusScope.of(context).unfocus();
+                            return LoadingAnimationWidget.stretchedDots(
+                              color: Colors.white,
+                              size: 40,
+                            );
+                          } else {
+                            return const Text('Cek Kelayakan Kredit',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white));
+                          }
+                        },
+                        listener: (context, state) {
+                          if (state is CreditError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(state.message),
+                              ),
+                            );
+                          }
+                          if (state is CreditSuccess) {
+                            if (state.prediction == true) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const ApproveScreen(),
+                                ),
+                              );
+                            }
+                            if (state.prediction == false) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const RejectScreen(),
+                                ),
+                              );
+                            }
+                          }
+                        },
+                      ),
                     ),
                     const SizedBox(
                       height: 15,
