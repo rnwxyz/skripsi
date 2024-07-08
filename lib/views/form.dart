@@ -139,210 +139,212 @@ class _FormScreenState extends State<FormScreen> {
             Form(
               key: _formKey,
               child: Expanded(
-                child: ListView(
-                  children: <Widget>[
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    MyTextField(
-                      controller: nameController,
-                      label: 'Nama',
-                      hint: 'exp : I Made Rian Wijaya',
-                      vlidator: required,
-                      keyboardType: TextInputType.text,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: ageController,
-                      label: 'Umur (Tahun)',
-                      hint: 'exp : 22',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: incomeController,
-                      label: 'Pendapatan Per Tahun (\$)',
-                      hint: 'exp : 1000000',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: empLenghtController,
-                      label: 'Lama Bekerja (Tahun)',
-                      hint: 'exp : 2',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: loanAmtController,
-                      // dollar sign
-                      label: 'Jumlah Pinjaman (\$)',
-                      hint: 'exp : 1000000',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: loanIntRateController,
-                      label: 'Bunga Pinjaman (%)',
-                      hint: 'exp : 10',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyTextField(
-                      controller: percentIncomeController,
-                      label: 'Persentase Pendapatan (%)',
-                      hint: 'exp : 30',
-                      vlidator: required,
-                      keyboardType: TextInputType.number,
-                      onTap: () {},
-                      isReadOnly: false,
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyDropdown(
-                      value: homeOwnershipController.text,
-                      label: 'Kepemilikan Rumah',
-                      items: homeOwnershipItems,
-                      onChanged: (String? value) {
-                        setState(() {
-                          homeOwnershipController.text = value!;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyDropdown(
-                      value: loanIntentController.text,
-                      label: 'Tujuan Kredit',
-                      items: loanIntentItems,
-                      onChanged: (String? value) {
-                        setState(() {
-                          loanIntentController.text = value!;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    MyDropdown(
-                      value: loanGradeController.text,
-                      label: 'Grade Kredit',
-                      items: loanGradeItems,
-                      onChanged: (String? value) {
-                        setState(() {
-                          loanGradeController.text = value!;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        minimumSize: const Size(double.infinity, 50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      MyTextField(
+                        controller: nameController,
+                        label: 'Nama',
+                        hint: 'exp : I Made Rian Wijaya',
+                        vlidator: required,
+                        keyboardType: TextInputType.text,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: ageController,
+                        label: 'Umur (Tahun)',
+                        hint: 'exp : 22',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: incomeController,
+                        label: 'Pendapatan Per Tahun (\$)',
+                        hint: 'exp : 1000000',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: empLenghtController,
+                        label: 'Lama Bekerja (Tahun)',
+                        hint: 'exp : 2',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: loanAmtController,
+                        // dollar sign
+                        label: 'Jumlah Pinjaman (\$)',
+                        hint: 'exp : 1000000',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: loanIntRateController,
+                        label: 'Bunga Pinjaman (%)',
+                        hint: 'exp : 10',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyTextField(
+                        controller: percentIncomeController,
+                        label: 'Rasio Pendapatan dan Hutang',
+                        hint: 'exp : 0.5',
+                        vlidator: required,
+                        keyboardType: TextInputType.number,
+                        onTap: () {},
+                        isReadOnly: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyDropdown(
+                        value: homeOwnershipController.text,
+                        label: 'Kepemilikan Rumah',
+                        items: homeOwnershipItems,
+                        onChanged: (String? value) {
+                          setState(() {
+                            homeOwnershipController.text = value!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyDropdown(
+                        value: loanIntentController.text,
+                        label: 'Tujuan Kredit',
+                        items: loanIntentItems,
+                        onChanged: (String? value) {
+                          setState(() {
+                            loanIntentController.text = value!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      MyDropdown(
+                        value: loanGradeController.text,
+                        label: 'Grade Kredit',
+                        items: loanGradeItems,
+                        onChanged: (String? value) {
+                          setState(() {
+                            loanGradeController.text = value!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          minimumSize: const Size(double.infinity, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            final data = CreditModel(
+                              name: nameController.text,
+                              age: int.parse(ageController.text),
+                              income: int.parse(incomeController.text),
+                              empLength: int.parse(empLenghtController.text),
+                              loanAmount: int.parse(loanAmtController.text),
+                              interestRate:
+                                  double.parse(loanIntRateController.text),
+                              percentIncome:
+                                  double.parse(percentIncomeController.text),
+                              homeOwnership: homeOwnershipController.text,
+                              loanIntent: loanIntentController.text,
+                              loanGrade: loanGradeController.text,
+                            );
+                            context
+                                .read<CreditBloc>()
+                                .add((CreditPostEvent(credit: data)));
+                          }
+                        },
+                        child: BlocConsumer<CreditBloc, CreditState>(
+                          builder: (context, state) {
+                            if (state is CreditLoading) {
+                              // close keyboard
+                              FocusScope.of(context).unfocus();
+                              return LoadingAnimationWidget.stretchedDots(
+                                color: Colors.white,
+                                size: 40,
+                              );
+                            } else {
+                              return const Text('Cek Kelayakan Kredit',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white));
+                            }
+                          },
+                          listener: (context, state) {
+                            if (state is CreditError) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(state.message),
+                                ),
+                              );
+                            }
+                            if (state is CreditSuccess) {
+                              if (state.prediction == true) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const ApproveScreen(),
+                                  ),
+                                );
+                              }
+                              if (state.prediction == false) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const RejectScreen(),
+                                  ),
+                                );
+                              }
+                            }
+                          },
                         ),
                       ),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final data = CreditModel(
-                            name: nameController.text,
-                            age: int.parse(ageController.text),
-                            income: int.parse(incomeController.text),
-                            empLength: int.parse(empLenghtController.text),
-                            loanAmount: int.parse(loanAmtController.text),
-                            interestRate:
-                                double.parse(loanIntRateController.text),
-                            percentIncome:
-                                double.parse(percentIncomeController.text),
-                            homeOwnership: homeOwnershipController.text,
-                            loanIntent: loanIntentController.text,
-                            loanGrade: loanGradeController.text,
-                          );
-                          context
-                              .read<CreditBloc>()
-                              .add((CreditPostEvent(credit: data)));
-                        }
-                      },
-                      child: BlocConsumer<CreditBloc, CreditState>(
-                        builder: (context, state) {
-                          if (state is CreditLoading) {
-                            // close keyboard
-                            FocusScope.of(context).unfocus();
-                            return LoadingAnimationWidget.stretchedDots(
-                              color: Colors.white,
-                              size: 40,
-                            );
-                          } else {
-                            return const Text('Cek Kelayakan Kredit',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white));
-                          }
-                        },
-                        listener: (context, state) {
-                          if (state is CreditError) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(state.message),
-                              ),
-                            );
-                          }
-                          if (state is CreditSuccess) {
-                            if (state.prediction == true) {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => const ApproveScreen(),
-                                ),
-                              );
-                            }
-                            if (state.prediction == false) {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => const RejectScreen(),
-                                ),
-                              );
-                            }
-                          }
-                        },
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
