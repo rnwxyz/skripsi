@@ -26,7 +26,6 @@ class CreditApi {
 
   Future<bool> predict({required CreditModel credit}) async {
     try {
-      print(credit.toJson());
       final response = await _dio.post(
         baseUrl,
         options: Options(

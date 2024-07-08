@@ -1,7 +1,4 @@
-import 'dart:ffi' as ffi;
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kredit_app/blocs/credit/credit_bloc.dart';
 import 'package:kredit_app/model/credit_model.dart';
